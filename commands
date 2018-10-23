@@ -1,0 +1,36 @@
+#init gcloud
+gcloud init
+#click connect on your cluster to get the command to connect kubectl to it
+# deploy webui
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+#web ui
+127.0.0.1:8001/ui
+
+
+#create secret
+kubectl create secret docker-registry my-secret --docker-server=docker.io --docker-username=hmallah --docker-password=THEPASSWORD --docker-email=mallah.hicham@gmail.com
+
+
+# create stuff
+kubectl create -f rc_file_name
+kubectl create -f deployment_file_name
+
+# expose deployment on external ip
+kubectl expose deployment iduploadservice-deploy --type=LoadBalancer --name=iduploadservice-deploy
+
+# run command inside pod
+kubectl exec PODNAME -- bash -c 'curl -XGET iduploadservice-deploy:5000/tokens'
+
+#update something
+kubectl apply -f filename.json
+
+#scale up or down
+kubectl scale -f filename.json --replicas=2
+
+
+#enable autocomplete
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+
+#create secret generic
+kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD

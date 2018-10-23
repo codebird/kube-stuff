@@ -1,0 +1,25 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "partner-frontend",
+    "labels": {
+      "zone": "testing",
+      "version": "v1"
+    }
+  },
+  "spec": {
+    "containers": [
+	{
+	      "name": "partner-frontend",
+	      "image": "hmallah/partnerfront-multi:latest",
+	      "ports": [
+		{
+		  "hostPort": 80,
+		  "containerPort": 80
+		}
+	      ]
+	    }
+    ]
+  }
+}
