@@ -1,0 +1,15 @@
+#login to docker hub
+docker login
+#push repo
+docker push {imagename}
+#create network
+docker network create -d overlay mynet
+#create a service
+docker service create --name mysql --replicas 1 -p 3306:3306 --network mynet --env MYSQL_ROOT_PASSWORD=mypassword mysql
+docker service create --replicas 2 --name {servicename} --network {networkname} -p 5000:5000 {image}
+#run an image in a container with an exposed port
+docker run -p 8080:80 -d --name {containername} {imagename}
+#build image
+docker image build -t {imagename} .
+#remove all conainers
+docker rm $(docker ps -a -q)
