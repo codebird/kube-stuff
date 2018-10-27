@@ -2,7 +2,7 @@
 	"apiVersion": "extensions/v1beta1",
 	"kind": "Deployment",
 	"metadata": {
-		"name": "iduploadservice-deploy"
+		"name": "SERVICENAME-deploy"
 	},
 	"spec": {
 		"replicas": 3,
@@ -17,7 +17,7 @@
 		"template": {
 			"metadata": {
 				"labels": {
-					"app": "iduploadservice",
+					"app": "SERVICENAME",
 					"zone": "testing",
 					"version": "v1"
 				}
@@ -25,8 +25,8 @@
 			"spec": {
 				"containers": [
 					{
-						"name": "iduploadservice",
-						"image": "hmallah/iduploadservice:latest",
+						"name": "SERVICENAME",
+						"image": "hmallah/SERVICENAME:latest",
 						"ports": [
 						{
 						  "hostPort": 80,
