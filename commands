@@ -9,7 +9,7 @@ kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/
 
 
 #create secret
-kubectl create secret docker-registry my-secret --docker-server=docker.io --docker-username=hmallah --docker-password=THEPASSWORD --docker-email=mallah.hicham@gmail.com
+kubectl create secret docker-registry my-secret --docker-server=docker.io --docker-username=USERNAME --docker-password=THEPASSWORD --docker-email=EMAIL
 
 
 # create stuff
@@ -17,10 +17,10 @@ kubectl create -f rc_file_name
 kubectl create -f deployment_file_name
 
 # expose deployment on external ip
-kubectl expose deployment iduploadservice-deploy --type=LoadBalancer --name=iduploadservice-deploy
+kubectl expose deployment SERVICENAME-deploy --type=LoadBalancer --name=SERVICENAME-deploy
 
 # run command inside pod
-kubectl exec PODNAME -- bash -c 'curl -XGET iduploadservice-deploy:5000/tokens'
+kubectl exec PODNAME -- bash -c 'curl -XGET SERVICENAME-deploy'
 
 #update something
 kubectl apply -f filename.json
