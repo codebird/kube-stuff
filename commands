@@ -37,3 +37,6 @@ kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
 #import mysql db
 kubectl exec -i mysqlpodname -- mysql -u user -p'password' dbname < local_file_name
+
+#copy elasticsearch index to the cloud
+kubectl cp /usr/share/elasticsearch/data/nodes/0/indices/ default/elasticsearchpodname:/usr/share/elasticsearch/data/nodes/0/indices/
