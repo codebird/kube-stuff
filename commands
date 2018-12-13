@@ -36,7 +36,10 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
 #import mysql db
-kubectl exec -i mysqlpodname -- mysql -u user -p'password' dbname < local_file_name
+kubectl exec -i MYSQLPODNAME -- mysql -u user -p'password' dbname < local_file_name
 
-#copy elasticsearch index to the cloud
-kubectl cp /usr/share/elasticsearch/data/nodes/0/indices/ default/elasticsearchpodname:/usr/share/elasticsearch/data/nodes/0/indices/
+#migrate elasticsearch index to the kubernetes elasticsearch cluster
+kubectl cp /usr/share/elasticsearch/data/nodes/0/indices/ default/ELASTICSEARCHPODNAME:/usr/share/elasticsearch/data/nodes/0/indices/
+#chown the files to make them for elasticsearch, and then delete the pod
+kubectl exec -i ELASTICSEARCHPODNAME -- chown -R elasticsearch:root /usr/share/elasticsearch/data/nodes/0/indices/
+kubectl delete pod ELASTICSEARCHPODNAME
